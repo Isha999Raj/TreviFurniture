@@ -1,0 +1,16 @@
+<apex:page standardController="OpportunityLineItem" showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />    
+    <script>
+    debugger;
+    $Lightning.use("c:CallSpecificationComp", function() {
+        $Lightning.createComponent("c:createMaterialSpecOnProduct",
+          { recordId: '{!$CurrentPage.parameters.id}'
+          },
+          "LightningComponentid",
+          function(cmp) {
+             console.log('LWC Componenet added in VF page');
+          });
+    });
+    </script>
+</apex:page>

@@ -1,0 +1,132 @@
+<apex:page applyHtmlTag="false" showHeader="false" sidebar="false" docType="html-5.0" renderAs="pdf" controller="DeliveryChallanVFController" title="Delivery Challan PDF" >
+    <head>
+        <style>
+            @page {
+            margin-top: 0cm;
+            margin-left: 0.5cm;
+            margin-right: 0.5cm;      
+            }
+            
+            div.two {
+            border:1px solid black;
+            width:100%;
+            padding: 1px;
+            }
+        </style>
+        
+    </head>
+    <apex:stylesheet value="{!$Resource.PDF}"/>
+    <div class="content" >
+        <div class="two">
+            
+            <b style="font-size:23px;color:#151B54"><center>Delivery Challan (Stock Transfer)</center></b>
+            <span style="padding:2px;"> <apex:image url="{!$Resource.logo}" width="100px" height="50" /></span>
+            <p>
+                <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;padding-bottom:10px;font-family: Noto Sans,Helvetica,sans-serif;margin-left: 30px;">
+                    <div style="display: inline-block;padding: ;vertical-align: middle;float:left;width:50%">
+                        <!--apex:image url="{!$Resource.logo}" width="120px" height="50" / -->
+                        <b>{!getCompanyDetails.MasterLabel}</b> <br/>
+                        {!getCompanyDetails.StreetAddress__c}<br/>
+                        {!getCompanyDetails.StreetAddress1__c} <br/>
+                        {!getCompanyDetails.StateAddress__c}
+                        
+                    </div>
+                    <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%;font-size:20px;font-family: -webkit-body;text-align:left;font-size:15px">
+                        GSTIN &nbsp;&nbsp; {!getCompanyDetails.GSTIN__c} <br/>
+                        CIN No &nbsp;&nbsp; {!getCompanyDetails.CIN_No__c}  <br/>
+                        PAN No &nbsp; {!getCompanyDetails.PAN_No__c}
+                    </div>
+            </div>
+        </p>
+        
+    </div>
+    <div class="two">
+        
+        
+        <p>
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif;margin-left: 30px;">
+                <div style="display: inline-block;padding: 0;vertical-align: middle;float:left;width:55%;text-align:left;">
+                    <b> Consignee {!getWareHouseDestinationAddress.Name}</b> <br/>
+                    <b>Address</b> &nbsp;&nbsp;&nbsp;  {!getWareHouseDestinationAddress.Address__Street__s}  <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!getWareHouseDestinationAddress.Address__City__s} - {!getWareHouseDestinationAddress.Address__PostalCode__s}  <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {!getWareHouseDestinationAddress.Address__StateCode__s}, {!getWareHouseDestinationAddress.Address__CountryCode__s}
+                </div>
+                <div style="display: inline-block;vertical-align: middle;float:left;width:45%;">
+                    &nbsp;&nbsp; &nbsp;&nbsp;  DC No {!getCompanyDetails.DC_No__c} <br/>
+                    &nbsp;&nbsp; &nbsp;&nbsp;  Date    {!DAY(TODAY())}/{!MONTH(TODAY())}/{!YEAR(TODAY())}<br/>
+                    &nbsp;&nbsp; &nbsp;&nbsp;  Vehicle No  <br/>
+                    &nbsp;&nbsp; &nbsp;&nbsp;  Carrier Name  <br/>
+                    &nbsp;&nbsp; &nbsp;&nbsp;  EWBN  
+                </div>
+        </div>
+    </p>
+    
+</div>
+<table style="width:100.2%;border:1px solid black;border-collapse:collapse;">
+    <tr >
+        <th  style="border:1px solid black;background-color: #dddddd;text-align:center;">Sl No</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Item</th>
+        <!-- <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">PRODUCT CODE</th> -->
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">HSN Code / SAC</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Unit</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Project No</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Quantity</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Unit Rate</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Value</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;"><ul>GST</ul></th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Total Value</th>
+    </tr>
+    <apex:variable var="index" value="{!0}"/>
+    <apex:variable var="totalPrice" value="0"/>
+    <apex:variable var="totalValueWithGST" value="0"/>
+    <apex:variable var="totalValueWithaddedGST" value="0"/>
+    <apex:variable var="totalQuantityOfProduct" value="0"/>
+    <apex:repeat value="{!getProductListItem}" var="lineItems">
+        <tr>
+            <apex:variable var="index" value="{!(index+1)}"/>
+            
+            <td style="border:1px solid black;text-align:center;"><apex:outputText value="{!index}"/></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.Name}</td>
+            <!-- <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.ProductCode}</td> -->
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.Hsn_Code__c}</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.Uom__c}</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">902-04</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.Quantity__c}</td>
+            <apex:repeat value="{!lineItems.PricebookEntries}" var="item">
+                <apex:variable var="productPrice" value="{!lineItems.Quantity__c * item.UnitPrice}"/>
+                <apex:variable var="totalPrice" value="{!productPrice}"/>
+                
+                <apex:variable var="gstwithPercentage" value="{!totalPrice * lineItems.GST__c}"/>
+                <apex:variable var="totalValueWithGST" value="{!gstwithPercentage / 100}"/>
+                
+                <apex:variable var="totalValueWithaddedGST" value="{!totalValueWithGST + totalPrice}"/>
+                
+                <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!item.UnitPrice}</td>
+            </apex:repeat>
+            
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!totalPrice}</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!lineItems.GST__c}</td>
+            
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;">{!totalValueWithaddedGST}</td>
+        </tr>
+    </apex:repeat>
+</table>
+<div>
+    <table style="width:100.2%;border:1px solid black;border-collapse:collapse;">
+        <tr>
+            <td style="border:1px solid black;width:50%;padding:10px;border-top: hidden;padding-left:5ren;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span><b style="font-size:18px;">Total :</b></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b style="font-size:18px;color:#000080"> {!totalQuantity} </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b style="font-size:18px;color:#000080">{!Totalvalue}.00</b> <br/>
+                <b style="font-size:18px;">Amount in Words : </b> {!totalValueAmount} ONLY <br/>
+                <b style="font-size:18px;">Remarks </b> PO NO-42
+            </td>
+            
+        </tr>
+        <tr>
+            <td style="border:1px solid black;width:50%;padding:10px;padding-left:5ren;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span><b style="font-size:18px;">Trevi Furniture Corp Pvt Ltd</b></span>  <br/><br/><br/><br/><br/>
+                <b style="font-size:18px;">Prepared By </b> <apex:outputText value="{!$User.FirstName}" />&nbsp; <apex:outputText value="{!$User.LastName}" />   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span><b style="font-size:18px;">Authorised Signatory                </b></span>
+            </td>
+            
+        </tr>
+    </table>
+</div>
+</div>
+</apex:page>

@@ -1,0 +1,137 @@
+<apex:page applyHtmlTag="false" showHeader="false" sidebar="false" docType="html-5.0" renderAs="pdf" title="Delivery Challan PDF" >
+<html>
+   <head>
+       <style>
+            @page {
+            margin-left: 0.6cm;
+            margin-right:0.6cm;
+            }
+           
+       table  {
+  border: 1px solid black;
+}
+       </style>
+    </head> 
+<body>
+    <center> <h2>Trevi Furniture Corp Pvt Ltd</h2> </center>
+       <center style="color:blue;"><h3>Material Requisition Slip</h3></center>
+       <hr/>    
+    <br/>
+      <div style="margin-left: 40px;margin-right:20px;font-family: Noto Sans,Helvetica,sans-serif">
+                <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif;">
+                    <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%">
+                        <span style="font-size: 13.5px;font-weight: ">MRS NO &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;   :</span>  <span style="font-size:13px;font-weight: normal">U12324MRS00487</span><br/>
+                        <span style="font-size: 13.5px;font-weight: ">Unit &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  :</span>  <span style="font-size:13px;font-size: 13.5px;font-weight: normal"> Trevi Furniture Corp pvt Ltd</span> <br/>     
+                        <span style="font-size: 13.5px;font-weight: "><b>Project</b>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;  :</span> <span style="font-size:13px;font-size: 13.5px;font-weight: normal"><b>902-23-PO 63</b></span><br/>
+                        <span style="font-size: 13.5px;font-weight: ">WO No/Date &nbsp; :</span>  <span style="font-size:13px;font-size: 13.5px;font-weight: normal">U12324WO00178 13/05/2023</span>   <br/>
+                        <span style="font-size: 13.5px;font-weight: ">Department &nbsp; &nbsp;:</span>  <span style="font-size:13px;font-size: 13.5px;font-weight: normal"> Design</span><br/>
+                      
+                    </div>
+                    <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%;color:#606060;">
+                        <span style="font-weight: bold;font-size: 13.5px">Date &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  <span style="font-weight: normal;font-size: 13.5px">13/05/2023</span> </span><br/>
+                        <span style="font-weight: bold;font-size: 13.5px">Product &nbsp; &nbsp; &nbsp;  &nbsp; : <span style="font-weight: normal;font-size: 13.5px">F00009028</span> </span><br/>
+                        <span style="font-weight: bold;font-size: 13.5px">  <span style="font-weight: normal;font-size: 13.5px"></span> </span><br/>
+                        <span style="font-weight: bold;font-size: 13.5px">Quantity  &nbsp; &nbsp; &nbsp;  &nbsp;:  <span style="font-weight: normal;font-size: 13.5px">100</span></span><br/>
+                        <span style="font-weight: bold;font-size: 13.5px">Issued Date &nbsp; : <span style="font-weight: normal;font-size: 13.5px">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; Status :Open</span></span><br/>
+                        <!--span style="font-weight: bold;font-size: 13.5px">Status : <span style="font-weight: normal;font-size: 13.5px">Open</span></span><br/-->
+                    </div>
+                </div>  
+            </div>
+    
+    <br/>
+    <div>   
+        <table style="width:100%;border:1px solid black;border-collapse:collapse;">
+    <tr >
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Slno</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Item</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Unit</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Bin No</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center; border-top: 5px solid red;">Required.</th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Issued </th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Pending </th>
+        <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Cur Stk</th>
+         <th  style="border:1px solid black;background-color: #dddddd;font-size:12px;text-align:center;">Remarks</th>
+    </tr>
+   
+        <tr>
+           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">1.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">BSL PLPB DARK WENGLE SF 8X6X15MM(r00008069)</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">207</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">207</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>
+            
+             <tr>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">2.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">BSL PLPB DARK WENGLE SF 8X6X15MM(r00008070)</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">64</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">64</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>
+            
+             <tr>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">3.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">EB-WENGI TREVI </td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">64</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">64</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>
+            
+             <tr>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">4.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">D NUT M4X10(H00005491) </td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">1000</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">1000</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>
+             
+             <tr>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">5.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">EB-WENGI TREVI </td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">3600</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">3600</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>
+            
+            <tr>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">6.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:60%">WOODEN HANDLE 250MM(C00008940) </td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">Nos</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">3600</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">3600</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">0</td>
+             <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"></td>
+            </tr>    
+            </table>
+    </div> 
+    <br/>
+    <br/>
+    <span>&nbsp;Prepared By &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Issued By &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Received By</span> 
+    <br/><br/>
+       <span>ABU AZMAD ARSH</span>   
+    </body>   
+</html>    
+</apex:page>

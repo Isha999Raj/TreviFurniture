@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionwithoutheader" access="global" controller="ProductController" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="string"/>
+    <c:generateQuotePdf recId="{!v.recordId}"></c:generateQuotePdf>
+    
+</aura:component>

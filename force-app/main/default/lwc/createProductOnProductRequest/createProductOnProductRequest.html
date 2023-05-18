@@ -1,0 +1,22 @@
+<template>
+   <br/>
+   <div class="slds-border_bottom slds-text-align_center" style="font-size:18px; height:40px;">New Product</div>
+   <br/>
+   <div class="slds-p-bottom_large slds-p-left_large" >
+      <lightning-record-edit-form object-api-name="Product2" onerror={handleError} onsuccess={handleSuccess}>
+        <lightning-messages> </lightning-messages>
+        <template for:each={fieldList} for:item="fld">
+            <div style="width:90%" key={fld}>
+                <lightning-input-field field-name={fld}></lightning-input-field>
+            </div>
+        </template>
+        <lightning-layout>
+            <div class="slds-align_absolute-center">
+                <lightning-button variant="neutral" onclick={closeAction} name="cancel" label="Cancel"></lightning-button>&nbsp;
+                <lightning-button variant="brand" name="submit" type="submit" label="Save"></lightning-button>
+            </div>
+        </lightning-layout>
+      </lightning-record-edit-form>
+      
+   </div>
+</template>

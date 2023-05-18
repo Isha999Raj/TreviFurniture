@@ -1,0 +1,99 @@
+<apex:page applyHtmlTag="false"  standardStylesheets="false"  docType="html-5.0" showHeader="false" standardController="Quote" sidebar="false" renderAs="pdf" extensions="ProductController">
+    <!--apex:image url="/sfc/servlet.shepherd/version/download/{!ContentversionId}" style="max-height:30px;"/-->
+    <html>
+        <table style="width:100%;border:1px solid black;border-collapse:collapse;">
+             <tr>
+            <th style="border: 1px solid black;border-collapse:collapse;padding-left:10px;"><span><apex:image url="{!$Resource.treviInvoiceLogo}" width="75px" height="50"/> &nbsp;&nbsp;&nbsp;<div style="text-align:center; ">QUOTE LIBRARY FURNITURE DATED 10 MAY 2023</div></span></th>
+        </tr>
+        </table>
+       
+        
+           <table style="width:100%;border:1px solid black;border-collapse:collapse;">
+    <tr >
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">Slno</th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">Furniture Type</th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">REFERENCE IMAGE</th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">TREVI ITEM DESCRIPTION</th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">SIZE</th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">Basic Rate </th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">Total Qty </th>
+        <th  style="border:1px solid black;background-color: #e6ffe6;font-size:12px;text-align:center;padding-top:10px;padding-bottom:10px;">Total</th>
+    </tr>
+               <apex:variable var="cnt" value="{!0}" />
+                <apex:repeat value="{!quoteLineItems}" var="qt">
+                     <apex:variable var="cnt" value="{!cnt+1}"/>
+             <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%"><apex:OutputText value="{!cnt}"/></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">{!qt.product2.Name}</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:20%"><apex:image url="/sfc/servlet.shepherd/version/download/{!ContentversionId}" width="70" height="70"/></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">{!qt.product2.Description}</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:30%">900 W X 800 D X 2100 H</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">{!qt.UnitPrice}</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">{!qt.Quantity}</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">{!qt.TotalPrice}</td>
+            </tr>
+               </apex:repeat>
+                
+            <!--   <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">2.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">JOURNAL DISPLAY / MAGZINE RACK</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:20%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">Top Made of 18mmCommercial Ply withLaminate Finished withPVC edgebend</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:30%">900 W X 800 D X 2100 H</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 1</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">50</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 50</td>
+            </tr>
+                <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">3.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">BOOK RETURN TRILLY</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:20%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">Top Made of 18mmCommercial Ply withLaminate Finished withPVC edgebend</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:30%">900 W X 800 D X 900 H</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 1</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">50</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 50</td>
+            </tr>
+                <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">4.</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">STUDENT CHAIR</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:20%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:30%">&nbsp;</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 1</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">50</td>
+            <td style="border:1px solid black;background-color: #e6ffe6;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 50</td>
+            </tr> -->
+               <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:15%">&nbsp;</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:20%">&nbsp;</td>
+                   <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%" colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>SUB TOTAL</b></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 50</td>
+            </tr>
+                 <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%" colspan="3">NOTE</td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%" colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>TRANSPORTATION and INSTALLATION</b></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%">₹ 3</td>
+            </tr>
+             <tr>           
+                 <td style="border:1px solid black;word-wrap: break-word;padding:5px; font-size: 7px;" colspan="3"><b>1. ABOVE QUOTE IS INCLUSIVE OF TRANSPORTATION &amp; INSTALLATION IN CHENNAI</b></td>
+                 <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%" colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>GST</b></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"> 10</td>
+            </tr> 
+               <tr>           
+                   <td style="border:1px solid black;word-wrap: break-word;padding:5px; font-size: 7px; break-all;width:5%" colspan="3"><b>2. PAYMENT: 60% ADVANCE, 35% ON DELIVERY &amp; 5% AFTER INSTALLATION</b></td>
+                   <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%" colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>GRAND TOTAL</b></td>
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;text-align:center;width:5%"> 63</td>
+            </tr> 
+                <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;font-size: 7px; break-all;width:5%" colspan="3"><b>3.WARRANTY : 1 YEAR FOR ANY MANUFACTURING DEFECTS</b></td>
+                    <td style="border:1px solid black;word-wrap: break-word;padding:5px;word-wrap: break-all;width:5%" colspan="5" rowspan="2">&nbsp;</td>
+               </tr>
+                <tr>           
+            <td style="border:1px solid black;word-wrap: break-word;padding:5px;font-size: 7px; break-all;width:5%" colspan="3"><b>4. DELIVERY : 6/8 WEEKS AFTER RECEIPT OF PO &amp; ADVANCE</b></td>
+
+               </tr>
+        </table>
+ </html>
+</apex:page>

@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+            &nbsp;Add Material Specifications
+        </h3>
+        <br/><br/><br/>
+    
+        <c-custom-header-look-up record-id={recordId} s-object-api-name="Specification_Header__c" label="Specification Header"
+                onlookupupdate={handleLookupSelection} placeholder="Search Header...">
+        </c-custom-header-look-up><br/><br/><br/><br/>
+
+    </lightning-card>
+
+</template>
